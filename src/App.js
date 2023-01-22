@@ -1,23 +1,100 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useState } from "react";
 
 function App() {
+  const [counter, setCounter] = useState(0);
+  const [counterIncrements, setCounterIncrements] = useState(1);
+  const [maximum, setMaximum] = useState(100);
+  const [minimum, setMinimum] = useState(0);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
+    <div className="app">
+      <div className="innerContainer">
+        <h1>Counter App</h1>
+        <p style={{ textAlign: "center" }}>
+          This is a counter application built by Arsien, powered by React
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <input
+          type="input"
+          value={counter}
+          onChange={(e) => {
+            setCounter(e.target.value);
+          }}
+        />
+        <div className="buttonContainer">
+          <button
+            onClick={() => {
+              if (counter > minimum) {
+                setCounter(counter - counterIncrements);
+              }
+            }}
+          >
+            -
+          </button>
+          <button
+            onClick={() => {
+              if (counter < maximum) {
+                setCounter(counter + counterIncrements);
+              }
+            }}
+          >
+            +
+          </button>
+        </div>
+
+        <h2 style={{ marginTop: "50px" }}>other settings</h2>
+        <p>By increments</p>
+        <input
+          type="input"
+          value={counterIncrements}
+          onChange={(e) => {
+            setCounterIncrements(e.target.value);
+          }}
+        />
+
+        <div className="buttonContainer">
+          <button
+            onClick={() => {
+              setCounterIncrements(counterIncrements - 1);
+            }}
+          >
+            -
+          </button>
+          <button
+            onClick={() => {
+              setCounterIncrements(counterIncrements + 1);
+            }}
+          >
+            +
+          </button>
+        </div>
+
+        <p>Maximum</p>
+        <input
+          type="input"
+          value={maximum}
+          onChange={(e) => {
+            setMaximum(e.target.value);
+          }}
+        />
+        <div className="buttonContainer">
+          <button onClick={() => setMaximum(maximum - 1)}>-</button>
+          <button onClick={() => setMaximum(maximum + 1)}>+</button>
+        </div>
+
+        <p>Minimum</p>
+        <input
+          type="input"
+          value={minimum}
+          onChange={(e) => {
+            setMinimum(e.target.value);
+          }}
+        />
+        <div className="buttonContainer">
+          <button onClick={() => setMinimum(minimum - 1)}>-</button>
+          <button onClick={() => setMinimum(minimum + 1)}>+</button>
+        </div>
+      </div>
     </div>
   );
 }
